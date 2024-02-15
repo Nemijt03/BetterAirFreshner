@@ -11,6 +11,15 @@ void displaySetup() {
 }
 
 void display(String message) {
-  lcd.setCursor(0,1);
+  lcd.setCursor(0, 1);
+  lcd.print(message);
+}
+
+void display(float temperature, float distance, int motion) {
+  lcd.setCursor(0, 0);
+  lcd.print(motion);
+  lcd.print(" ");
+  lcd.println(distance);  
+  String message = "Temp: " + String(temperature);
   lcd.print(message);
 }

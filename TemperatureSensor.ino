@@ -7,10 +7,10 @@
 // Setup a oneWire instance to communicate with any OneWire devices (not just Maxim/Dallas temperature ICs)
 OneWire oneWire(ONE_WIRE_BUS);
 
-// Pass our oneWire reference to Dallas Temperature. 
+// Pass our oneWire reference to Dallas Temperature.
 DallasTemperature sensors(&oneWire);
 
-float getTemp() {
+float getTemperature() {
   sensors.requestTemperatures();
   return sensors.getTempCByIndex(0);
 }

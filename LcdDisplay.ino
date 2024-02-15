@@ -19,7 +19,24 @@ void display(float temperature, float distance, int motion) {
   lcd.setCursor(0, 0);
   lcd.print(motion);
   lcd.print(" ");
-  lcd.println(distance);  
+  lcd.print(distance);
+  lcd.setCursor(0,1);
+  String message = "Temp: " + String(temperature);
+  lcd.print(message);
+}
+
+void displayMotion(int motion) {
+  lcd.setCursor(0,0);
+  lcd.print(motion);
+}
+
+void displayDistance(float distance) {
+  lcd.setCursor(2,0);
+  lcd.print(distance);
+}
+
+void displayTemperature(float temperature) {
+  lcd.setCursor(0,1);
   String message = "Temp: " + String(temperature);
   lcd.print(message);
 }

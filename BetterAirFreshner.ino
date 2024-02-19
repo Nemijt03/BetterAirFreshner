@@ -1,17 +1,20 @@
 #include "Timer.cpp"
 
-Timer* updateTemp;
+void temperature() {
+  displayTemperature(getTemperature());
+}
+
+Timer updateTemp(2000, &temperature);
 //Timer updateDist(500, millis(), &displayDistance, &getDistance);
 //Timer updateMotion(200, millis(), &displayMotion, &getMotion);
 
 void setup() {
   displaySetup();
-  updateTemp = new Timer(2000, millis(), &displayTemperature, &getTemperature);
+  // updateTemp = &createTimer(2000, &distance);
 }
 
 void loop() {
-
-  updateTemp->update(millis());
+  updateTemp.tick();
 //  updateDist.update(millis());
 //  updateMotion.update(millis());
   

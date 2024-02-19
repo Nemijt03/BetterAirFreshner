@@ -1,36 +1,21 @@
 #include "Timer.cpp"
 
-void temperature() {
-  displayTemperature(getTemperature());
-}
-
 Timer updateTemp(2000, &temperature);
-//Timer updateDist(500, millis(), &displayDistance, &getDistance);
-//Timer updateMotion(200, millis(), &displayMotion, &getMotion);
+Timer updateDist(300, &distance);
+Timer updateMotion(300, &motion);
+// Timer led(500, &blink);
+// Timer led1(350, &blink1);
 
 void setup() {
   displaySetup();
-  // updateTemp = &createTimer(2000, &distance);
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(7, OUTPUT);
 }
 
 void loop() {
+  // led.tick();
+  // led1.tick();
   updateTemp.tick();
-//  updateDist.update(millis());
-//  updateMotion.update(millis());
-  
-//  if (updateTemp.isTime(millis())) {
-//    displayTemperature(getTemperature());
-//    updateTemp.reset(millis());
-//  }
-//  
-//  if (updateDist.isTime(millis())) {
-//    displayDistance(getDistance());
-//    updateDist.reset(millis());
-//  }
-//  
-//  if (updateMotion.isTime(millis())) {
-//    displayMotion(getMotion());
-//    updateMotion.reset(millis());
-//  }
-  
+  updateDist.tick();
+  updateMotion.tick();
 }

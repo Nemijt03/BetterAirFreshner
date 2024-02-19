@@ -1,29 +1,29 @@
+#include <Arduino.h>
+
 class Timer {
   public:
-    void (*func)(float f);
-    float (*args)();
+    void (*func)();
     unsigned long activationTime;
     unsigned long intervalTime;
 
-    Timer(unsigned long interval, unsigned long currentMillis, void (*inputFunc)(float inputF), float (*inputArgs)()) {
-      activationTime = interval + currentMillis;
+    Timer(unsigned long interval, void (*inputFunc)()) {
+      activationTime = interval + millis();
       intervalTime = interval;
       func = inputFunc;
-      args = inputArgs;
     };
     
-    bool isTime(unsigned long currentMillis) {
-      return activationTime <= currentMillis;
+    bool isTime() {
+      return activationTime <= millis();
     };
 
-    void reset(unsigned long currentMillis) {
-      activationTime = currentMillis + intervalTime;
+    void reset() {
+      activationTime = millis() + intervalTime;
     }
 
-    void update(unsigned long currentMillis) {
-      if (isTime(currentMillis)) {
-        func(args());
-        reset(currentMillis);
+    void tick() {
+      if (isTime()) {
+        func();
+        reset();
       }
     }
 };

@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "Timer.cpp"
 
 Timer updateTemp(2000, &temperature);

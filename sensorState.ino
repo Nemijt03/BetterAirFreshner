@@ -1,6 +1,4 @@
-#include <Arduino.h>
-
-int sensorState = 0;
+byte sensorState = 0;
 
 // int sensor = 0 -> sitting sensor (distance)
 // int sensor = 1 -> time 

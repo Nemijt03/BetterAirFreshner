@@ -11,6 +11,7 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(7, OUTPUT);
   toIdle();
+  lcd.print(" ");
 }
 
 void loop() {

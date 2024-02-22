@@ -1,6 +1,12 @@
-#include <Arduino.h>
+byte state = NOTINUSE;
 
-int state = 0;
+#define NOTINUSE 0
+#define NR1 1
+#define NR2 2
+#define CLEANING 3
+#define UNDEFINED 4
+#define TRIGGERED 5
+#define MENUACTIVE 6
 
 // 0 == not in use
 // 1 == in use, number 1

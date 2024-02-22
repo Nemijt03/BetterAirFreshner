@@ -10,12 +10,13 @@ void setup() {
   displaySetup();
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(7, OUTPUT);
+  toIdle();
 }
 
 void loop() {
   // led.tick();
   // led1.tick();
-  updateTemp.tick();
-  updateDist.tick();
-  updateMotion.tick();
+  // updateTemp.tick();
+  // updateDist.tick();
+  // updateMotion.tick();
 }

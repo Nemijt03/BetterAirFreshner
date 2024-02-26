@@ -1,5 +1,3 @@
-byte state = NOTINUSE;
-
 #define NOTINUSE 0
 #define NR1 1
 #define NR2 2
@@ -7,6 +5,7 @@ byte state = NOTINUSE;
 #define UNDEFINED 4
 #define TRIGGERED 5
 #define MENUACTIVE 6
+byte state = NOTINUSE;
 
 // 0 == not in use
 // 1 == in use, number 1

@@ -1,5 +1,11 @@
 #include <LiquidCrystal.h>
 
+// initialize the library by associating any needed LCD interface pin
+// with the arduino pin number it is connected to
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+MenuItem * globalMenu; // het memory adress van het currently selected menu lijst.
+MenuItem confirmReset[2] = {MenuItem("OK", &resetShots, true), MenuItem("CANCEL", &toIdleMenu, false)};
 int remainingShots = 2400; // maximum amount of shots
 
 byte degree[] = {
@@ -13,13 +19,6 @@ byte degree[] = {
   B00000
 };
 
-// initialize the library by associating any needed LCD interface pin
-// with the arduino pin number it is connected to
-const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
-LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
-MenuItem * globalMenu; // het memory adress van het currently selected menu lijst.
-MenuItem confirmReset[2] = {MenuItem("OK", &resetShots, true), MenuItem("CANCEL", &toIdleMenu, false)};
-
 struct MenuItem
 {
   String name;
@@ -32,7 +31,6 @@ struct MenuItem
     selected = Selected;
   }
 };
-
 
 void nothing() {
 

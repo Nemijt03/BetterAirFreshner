@@ -23,8 +23,8 @@ int getSensorState(int sensor) {
 // state = 2 -> in use, number 2
 // state = 3 -> in use, cleaning
 int getStateFromSensors() {
-    if (sensorState > 8) return 2; // much toilet paper
-    if (sensorState == 2) return 3; // no toilet paper, no sitting, long time.
-    // if (getSensorState(1) == 0 && getSensorState(2) != 2) return 1;
+    if (sensorState > 8 || (sensorState > 4 && sensorState < 8 && getSensorState(1))) return 2;
+    if (sensorState < 4 && getSensorState(1)) return 3;
     return 1;
+    // no toilet paper, no sitting, long time.
 }

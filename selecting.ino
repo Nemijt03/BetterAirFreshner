@@ -31,10 +31,11 @@ void selectNext() {
 }
 
 void selectItem() {
+    getSelected().func();
+}
+
+struct MenuItem getSelected() {
     for(int i = 0; i < menuLength; i++) {
-        if (!globalMenu[i].selected) continue;
-        
-        globalMenu[i].func();
-        break;
+        if (globalMenu[i].selected) return globalMenu[i];
     }
 }

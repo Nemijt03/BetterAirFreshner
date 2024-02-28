@@ -32,8 +32,17 @@ struct MenuItem
 
 MenuItem idleMenu[1] = {MenuItem("To settings", &toSelectorMenu, true)};
 MenuItem confirmReset[2] = {MenuItem("OK", &resetShots, true), MenuItem("CANCEL", &toIdle, false)};
-MenuItem selectorMenu[3] = // extra to go back to idle
-  {MenuItem("Reset shots", &resetShotsConfirm, false), MenuItem("Timing options", &nothing, false), MenuItem("Back to idle", &toIdle, true)};
+MenuItem selectorMenu[3] = 
+  {MenuItem("Reset shots", &resetShotsConfirm, false), MenuItem("Timing options", &toWhenSprayMenu, false), MenuItem("Back to idle", &toIdle, true)};
+MenuItem whenSprayMenu[2] = {MenuItem("When entering", &selectSprayAtEnter, true), MenuItem("When exiting", &selectSprayAtExit, false)};
+MenuItem timingMenu[10] = 
+{
+  MenuItem("15 seconds", &selectTiming, true),  MenuItem("18 seconds", &selectTiming, false), 
+  MenuItem("21 seconds", &selectTiming, false), MenuItem("24 seconds", &selectTiming, false), 
+  MenuItem("27 seconds", &selectTiming, false), MenuItem("30 seconds", &selectTiming, false), 
+  MenuItem("33 seconds", &selectTiming, false), MenuItem("36 seconds", &selectTiming, false), 
+  MenuItem("39 seconds", &selectTiming, false), MenuItem("42 seconds", &selectTiming, false)
+};
 
 struct MenuItem *globalMenu = selectorMenu; // het memory adress van het currently selected menu lijst.
 int menuLength = 3;

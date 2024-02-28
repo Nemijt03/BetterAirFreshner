@@ -16,9 +16,18 @@ void toIdle() {
     lcd.print(F(" for menu"));
 }
 
-void updateIdle() {
-    lcd.home();
-    lcd.print(getTemperature());
+void updateTemperature() {
+    if (globalMenu[0].name == "To settings") {
+        lcd.home();
+        lcd.print(getTemperature());
+    }
+}
+
+void updateRemainingShots() {
+    if (globalMenu[0].name == "To settings") {
+        lcd.setCursor(12,0);
+        lcd.print(remainingShots);
+    }
 }
 
 void toSelectorMenu() {
@@ -75,15 +84,3 @@ void menu() {
     lcd.setCursor(0,1);
     lcd.print(globalMenu[displayed].name);
     }
-
-void printMenu() {
-
-}
-
-void toDelayConfig() {
-    
-}
-
-void toWhenToSpray() { // two choises
-
-}

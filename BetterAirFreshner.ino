@@ -1,7 +1,7 @@
 #include "Timer.cpp"
 #include "menu.cpp"
 
-Timer updateTemp(2000, &temperature);
+Timer updateTemp(2000, &updateTemperature);
 Timer updateDist(300, &distance);
 Timer updateMotion(300, &motion);
 // Timer led(500, &blink);
@@ -20,10 +20,10 @@ void setup() {
 
 void loop() {
   loopMenu();
+  updateTemp.tick();
   
   // led.tick();
   // led1.tick();
-  // updateTemp.tick();
   // updateDist.tick();
   // updateMotion.tick();
 }

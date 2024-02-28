@@ -30,12 +30,13 @@ struct MenuItem
   }
 };
 
-MenuItem confirmReset[2] = {MenuItem("OK", &resetShots, true), MenuItem("CANCEL", &toSelectorMenu, false)};
-MenuItem selectorMenu[3] = 
-  {MenuItem("Reset shots", &resetShotsConfirm, false), MenuItem("OP2", &nothing, false), MenuItem("Option 3", &nothing, true)};
+MenuItem idleMenu[1] = {MenuItem("To settings", &toSelectorMenu, true)};
+MenuItem confirmReset[2] = {MenuItem("OK", &resetShots, true), MenuItem("CANCEL", &toIdle, false)};
+MenuItem selectorMenu[3] = // extra to go back to idle
+  {MenuItem("Reset shots", &resetShotsConfirm, false), MenuItem("Timing options", &nothing, false), MenuItem("Back to idle", &toIdle, true)};
 
 struct MenuItem *globalMenu = selectorMenu; // het memory adress van het currently selected menu lijst.
-int menuLength;
+int menuLength = 3;
 
 
 void nothing() {
@@ -53,10 +54,11 @@ void displayMenu() {
 void loopMenu() {
   if (digitalRead(A3) == LOW) {
     selectNext();
-    delay(1000);
+    delay(500);
     displayMenu();
   }
   if(digitalRead(A1) == LOW){
+    delay(500);
     selectItem();
   }
 }

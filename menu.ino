@@ -1,6 +1,9 @@
 #include <Arduino.h>
 
 void toIdle() {
+    globalMenu = idleMenu;
+    menuLength = 1;
+
     lcd.createChar(0, degree);
     lcd.setCursor(0,0);
     lcd.print(getTemperature());
@@ -20,12 +23,17 @@ void updateIdle() {
 
 void toSelectorMenu() {
     globalMenu = selectorMenu;
-    toIdle();
+    menuLength = 3;
+    menu();
 }
 
 void menu() {
-    lcd.clear();
     lcd.home();
+    if (globalMenu[0].name == "To settings") {
+        lcd.clear();
+        toIdle();
+        return;
+    }
     if ((menuLength == 2) && (globalMenu[0].name.length() + globalMenu[1].name.length() <= 13)) // beside each other
     {
         lcd.setCursor(0,1);
@@ -45,6 +53,7 @@ void menu() {
         }
         return;
     }
+    lcd.clear();
     int selected = 0;
     int displayed = 0;
     for (int i = 0; i < menuLength; i++)

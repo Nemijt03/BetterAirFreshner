@@ -1,12 +1,15 @@
 
 void resetShotsConfirm() {
+    lcd.clear();
     lcd.home();
-    lcd.println(F("Reset shots?"));
+    lcd.print(F("Reset shots?"));
+    Serial.println("hier");
     globalMenu = confirmReset;
+    menuLength = 2;
     menu();
 }
 
 void resetShots() {
     remainingShots = 2400;
-    toSelectorMenu();
+    toIdle();
 }

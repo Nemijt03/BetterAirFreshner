@@ -4,8 +4,6 @@
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
-MenuItem * globalMenu; // het memory adress van het currently selected menu lijst.
-MenuItem confirmReset[2] = {MenuItem("OK", &resetShots, true), MenuItem("CANCEL", &toIdleMenu, false)};
 int remainingShots = 2400; // maximum amount of shots
 
 byte degree[] = {
@@ -32,31 +30,33 @@ struct MenuItem
   }
 };
 
+MenuItem confirmReset[2] = {MenuItem("OK", &resetShots, true), MenuItem("CANCEL", &toSelectorMenu, false)};
+MenuItem selectorMenu[3] = 
+  {MenuItem("Reset shots", &resetShotsConfirm, false), MenuItem("OP2", &nothing, false), MenuItem("Option 3", &nothing, true)};
+
+struct MenuItem *globalMenu = selectorMenu; // het memory adress van het currently selected menu lijst.
+int menuLength;
+
+
 void nothing() {
 
 }
 
-MenuItem menuTest[3] = {
-    MenuItem("Reset shots", &resetShotsConfirm, false),
-    MenuItem("OP2", &nothing, false),
-    MenuItem("Option 3", &nothing, true)
-  };
-
 void menuTesting() {
-  menu(menuTest, 3);
+  menu();
 }
 
 void displayMenu() {
-  menu(*globalMenu, 3);
+  menu();
 }
 
 void loopMenu() {
   if (digitalRead(A3) == LOW) {
-    selectNext(*globalMenu, 3);
+    selectNext();
     delay(1000);
     displayMenu();
   }
   if(digitalRead(A1) == LOW){
-    selectItem(*globalMenu, 3);
+    selectItem();
   }
 }

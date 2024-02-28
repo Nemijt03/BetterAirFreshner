@@ -2,11 +2,11 @@
 void resetShotsConfirm() {
     lcd.home();
     lcd.println(F("Reset shots?"));
-    globalMenu = &confirmReset;
-    menu(*globalMenu, 2);
+    globalMenu = confirmReset;
+    menu();
 }
 
 void resetShots() {
     remainingShots = 2400;
-    toIdleMenu();
+    toSelectorMenu();
 }

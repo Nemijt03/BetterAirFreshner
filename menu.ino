@@ -18,53 +18,53 @@ void updateIdle() {
     lcd.print(getTemperature());
 }
 
-void toIdleMenu() {
-    globalMenu = &idleMenu;
+void toSelectorMenu() {
+    globalMenu = selectorMenu;
     toIdle();
 }
 
-void menu(struct MenuItem items[], int length) {
+void menu() {
     lcd.clear();
     lcd.home();
-    if ((length == 2) && (items[0].name.length() + items[1].name.length() <= 13)) // beside each other
+    if ((menuLength == 2) && (globalMenu[0].name.length() + globalMenu[1].name.length() <= 13)) // beside each other
     {
         lcd.setCursor(0,1);
-        if (items[0].selected) {
+        if (globalMenu[0].selected) {
             lcd.write(126);
             lcd.print(F(" "));
-            lcd.print(items[0].name);
+            lcd.print(globalMenu[0].name);
             lcd.print(F(" "));
-            lcd.print(items[1].name);
+            lcd.print(globalMenu[1].name);
         }
         else {
-            lcd.print(items[0].name);
+            lcd.print(globalMenu[0].name);
             lcd.print(F(" "));
             lcd.write(126);
             lcd.print(F(" "));
-            lcd.print(items[1].name);
+            lcd.print(globalMenu[1].name);
         }
         return;
     }
     int selected = 0;
     int displayed = 0;
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < menuLength; i++)
     {
-        if (!items[i].selected) continue;
+        if (!globalMenu[i].selected) continue;
 
         selected = i;
-        if (i + 1 != length) displayed = i + 1;
+        if (i + 1 != menuLength) displayed = i + 1;
         break;
     }
 
     Serial.print("Selected: ");
-    Serial.println(items[selected].name);
+    Serial.println(globalMenu[selected].name);
     Serial.print("Displayed: ");
-    Serial.println(items[displayed].name);
+    Serial.println(globalMenu[displayed].name);
     lcd.write(126);
     lcd.print(F(" "));
-    lcd.print(items[selected].name);
+    lcd.print(globalMenu[selected].name);
     lcd.setCursor(0,1);
-    lcd.print(items[displayed].name);
+    lcd.print(globalMenu[displayed].name);
     }
 
 void printMenu() {

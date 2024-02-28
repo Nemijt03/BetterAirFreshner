@@ -1,28 +1,28 @@
 
-void selectNext(struct MenuItem items[], int length) {
+void selectNext() {
     Serial.println("selectNext");
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < menuLength; i++)
     {
-        if (!items[i].selected) continue;
+        if (!globalMenu[i].selected) continue;
 
-        items[i].selected = false;
+        globalMenu[i].selected = false;
         int newSelection = i + 1;
 
-        if (i == (length - 1)) {
+        if (i == (menuLength - 1)) {
             newSelection = 0;
         }
 
-        items[newSelection].selected = true;
+        globalMenu[newSelection].selected = true;
         Serial.print("i:");
         Serial.println(i);
         Serial.print("newSelection:");
         Serial.println(newSelection);
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < menuLength; i++)
         {
             Serial.print("\nNaam: ");
-            Serial.println(items[i].name);
+            Serial.println(globalMenu[i].name);
             Serial.print("Selected: ");
-            Serial.println(items[i].selected);
+            Serial.println(globalMenu[i].selected);
         }
         break;
         
@@ -30,11 +30,11 @@ void selectNext(struct MenuItem items[], int length) {
     
 }
 
-void selectItem(struct MenuItem items[], int length) {
-    for(int i = 0; i < length; i++) {
-        if (!items[i].selected) continue;
+void selectItem() {
+    for(int i = 0; i < menuLength; i++) {
+        if (!globalMenu[i].selected) continue;
         
-        items[i].func();
+        globalMenu[i].func();
         break;
     }
 }

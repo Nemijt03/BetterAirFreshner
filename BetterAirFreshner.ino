@@ -11,8 +11,8 @@ Timer updateMotion(300, &motion);
 void setup() {
   displaySetup();
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(A3, INPUT);
+  pinMode(7, OUTPUT); //waarvoor 
+  pinMode(A3, INPUT); //waarvoor
   Serial.begin(9600);
   
   menuTesting();

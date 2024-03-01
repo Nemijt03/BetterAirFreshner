@@ -70,4 +70,13 @@ void loopMenu() {
     delay(500);
     selectItem();
   }
+  if(digitalRead(A2) == LOW) {
+    delay(500);
+    spray();
+  }
+}
+
+// trigger op licht
+void spray() {
+  
 }

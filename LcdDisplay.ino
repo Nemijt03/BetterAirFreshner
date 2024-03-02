@@ -10,13 +10,10 @@ void display(String message) {
 }
 
 void display(float temperature, float distance, int motion) {
-  lcd.setCursor(0, 0);
-  lcd.print(motion);
+  displayMotion(motion);
   lcd.print(" ");
   lcd.print(distance);
-  lcd.setCursor(0,1);
-  String message = "Temp: " + String(temperature);
-  lcd.print(message);
+  displayTemperature(temperature);
 }
 
 void displayMotion(int motion) {
@@ -34,3 +31,10 @@ void displayTemperature(float temperature) {
   String message = "Temp: " + String(temperature);
   lcd.print(message);
 }
+/*
+void displayLight(int light) {
+  lcd.setCursor(0,1);
+  String message = "light: " + String(light);
+  lcd.print(message);
+}
+*/

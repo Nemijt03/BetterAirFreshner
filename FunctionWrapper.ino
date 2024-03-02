@@ -10,6 +10,11 @@ void motion() {
     displayMotion(getMotion());
 }
 
+void light() {
+    checkSpray();
+    
+}
+
 int ledStateBuildin = LOW;
 void blinkBuildin() {
   if (ledStateBuildin == LOW) ledStateBuildin = HIGH;
@@ -23,5 +28,5 @@ void blink7() {
   if (ledState7 == LOW) ledState7 = HIGH;
   else ledState7 = LOW;
 
-  digitalWrite(7, ledState7);
+  digitalWrite(12, ledState7);
 }

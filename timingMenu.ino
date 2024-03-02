@@ -3,21 +3,33 @@ void toWhenSprayMenu() {
     menuLength = 2;
     menu();
 }
+int oldLight = 0; //moet geen nul zijn maar de oude light
+
+void checkSpray(){
+    int getL = getLight();
+    Serial.print("min:");
+    Serial.println(whenSX);
+    Serial.print("max:");
+    Serial.println(whenSY);
+    if((abs(getL - oldLight) > 100) && getL > whenSX && getL < whenSY){
+        Serial.println("spray");
+        spray(); 
+    }
+    oldLight = getL;
+}
+
 
 void selectSprayAtEnter() {
     // TODO: enter spray config
-    //if (getLight() && old != new) spray()
-    //Trigger spray when getLight changes, make a variable and if old != new en licht is uit dan spray 
-    // old/new kan ook al in de getLight klasse en dat we het tijdverschil tussen de 2 checken voor hoelang iemand bezig is geweest.
+    whenSX = 500;
+    whenSY = 1023;
     toTimingMenu();
 }
 
 void selectSprayAtExit() {
     // TODO: exit spray config
-    //if (!getLight()) spray(), maar het moet maar 1x, dus zo gaat die constant als het licht uit staat sprayen. Maar hoe maar 1x??
-    
-    // Trigger spray when getLight changes, make a variable and if old != new en licht is uit dan spray 
-
+    whenSX = 0;
+    whenSY = 500;
     toTimingMenu();
 }
 

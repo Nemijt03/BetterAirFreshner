@@ -12,8 +12,11 @@ Timer updateLight(1000, &light);
 void setup() {
   displaySetup();
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(7, OUTPUT); //waarvoor 
-  pinMode(A3, INPUT); //waarvoorúú
+  pinMode(7, OUTPUT); // LED
+  pinMode(A1, INPUT); // Button
+  pinMode(A2, INPUT); // Button
+  pinMode(A3, INPUT); // Button
+  pinMode(9, INPUT); // Magnetic contact sensor
   Serial.begin(9600);
   
   menuTesting();

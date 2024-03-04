@@ -63,22 +63,25 @@ void displayMenu() {
 }
 
 void loopMenu() {
-  if (digitalRead(A3) == LOW) {
+  if (getButton() == 1) {
     selectNext();
     delay(500);
     displayMenu();
   }
-  if(digitalRead(A1) == LOW){
+  if(getButton() == 2){
     delay(500);
     selectItem();
   }
-  if(digitalRead(A2) == LOW) {
+  if(getButton() == 3) {
     delay(500);
     spray();
+  }
+  if (getButton() == 4) {
+    Serial.print(F("Magnet contact"));
   }
 }
 
 // trigger op licht
 void spray() {
-  
+  Serial.println(F("Spraying"));
 }

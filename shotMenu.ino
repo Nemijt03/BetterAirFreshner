@@ -1,4 +1,3 @@
-
 void resetShotsConfirm() {
     lcd.clear();
     lcd.home();

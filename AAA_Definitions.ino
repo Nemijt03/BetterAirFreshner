@@ -7,6 +7,12 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 int remainingShots = 2400; // maximum amount of shots
 int whenSX = 0;
 int whenSY = 500;
+int timeToSpray = 15;
+int entered = 0;
+int exited = 0;
+float longEnough = 420000;
+int closeEnough = 200; //testen
+
 
 byte degree[] = {
   B01100,
@@ -26,6 +32,7 @@ byte degree[] = {
 #define UNDEFINED 4
 #define TRIGGERED 5
 #define MENUACTIVE 6
+byte state = NOTINUSE;
 
 struct MenuItem
 {
@@ -71,6 +78,9 @@ void displayMenu() {
 }
 
 void loopMenu() {
+  if(state == TRIGGERED){
+    updateSpray.tick();
+  }
   if (getButton() == 1) {
     selectNext();
     delay(500);
@@ -84,12 +94,5 @@ void loopMenu() {
     delay(500);
     spray();
   }
-  if (getButton() == 4) {
-    Serial.print(F("Magnet contact"));
-  }
 }
 
-// trigger op licht
-void spray() {
-  Serial.println(F("Spraying"));
-}

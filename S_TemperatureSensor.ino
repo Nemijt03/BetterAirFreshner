@@ -14,3 +14,10 @@ float getTemperature() {
   sensors.requestTemperatures();
   return sensors.getTempCByIndex(0);
 }
+
+void updateTemperature() {
+    if (globalMenu[0].name == "To settings") {
+        lcd.home();
+        lcd.print(getTemperature());
+    }
+}

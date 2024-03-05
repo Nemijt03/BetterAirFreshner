@@ -1,36 +1,7 @@
 #include <Arduino.h>
 
-void toIdle() {
-    globalMenu = idleMenu;
-    menuLength = 1;
-
-    lcd.createChar(0, degree);
-    lcd.setCursor(0,0);
-    lcd.print(getTemperature());
-    lcd.write(byte(0));
-    lcd.print(F("C  S: "));
-    lcd.print(remainingShots);
-    lcd.setCursor(0,1);
-    lcd.print(F("Press "));
-    lcd.write(byte(126)); // '->'
-    lcd.print(F(" for menu"));
-}
-
-void updateTemperature() {
-    if (globalMenu[0].name == "To settings") {
-        lcd.home();
-        lcd.print(getTemperature());
-    }
-}
-
-void updateRemainingShots() {
-    if (globalMenu[0].name == "To settings") {
-        lcd.setCursor(12,0);
-        lcd.print(remainingShots);
-    }
-}
-
 void toSelectorMenu() {
+    changeState(MENUACTIVE);
     globalMenu = selectorMenu;
     menuLength = 3;
     menu();

@@ -1,5 +1,11 @@
 int sensorPin = 10;
+byte hasMoved = 0;
+
 
 int getMotion() {
-  return digitalRead(sensorPin);
+  return hasMoved;
+}
+
+void updateMoveIt() {
+  if(digitalRead(sensorPin)) hasMoved = 1;
 }

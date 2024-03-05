@@ -1,5 +1,3 @@
-byte state = NOTINUSE;
-
 // 0 == not in use
 // 1 == in use, number 1
 // 2 == in use, number 2

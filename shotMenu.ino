@@ -9,6 +9,6 @@ void resetShotsConfirm() {
 }
 
 void resetShots() {
-    remainingShots = 2400;
+    resetRemainingShots();
     toIdle();
 }

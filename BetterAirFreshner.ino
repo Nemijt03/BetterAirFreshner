@@ -13,17 +13,17 @@ void setup() {
   displaySetup();
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(7, OUTPUT); // LED
-  pinMode(A1, INPUT); // Button
-  pinMode(A2, INPUT); // Button
   pinMode(A3, INPUT); // Button
-  pinMode(9, INPUT); // Magnetic contact sensor
+  pinMode(6, OUTPUT); // RGB LED
+  pinMode(9, OUTPUT); // RGB LED
+  pinMode(10, OUTPUT); // RGB LED
+
   Serial.begin(9600);
-  
-  menuTesting();
+  // button input needs to be coupled
+  toIdle();
 }
 
 void loop() {
-  // flash();
   loopMenu();
   updateTemp.tick();
   updateLight.tick();

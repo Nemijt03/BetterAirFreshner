@@ -19,6 +19,14 @@ byte degree[] = {
   B00000
 };
 
+#define NOTINUSE 0
+#define NR1 1
+#define NR2 2
+#define CLEANING 3
+#define UNDEFINED 4
+#define TRIGGERED 5
+#define MENUACTIVE 6
+
 struct MenuItem
 {
   String name;
@@ -46,8 +54,8 @@ MenuItem timingMenu[10] =
   MenuItem("39 seconds", &selectTiming, false), MenuItem("42 seconds", &selectTiming, false)
 };
 
-struct MenuItem *globalMenu = selectorMenu; // het memory adress van het currently selected menu lijst.
-int menuLength = 3;
+struct MenuItem *globalMenu = idleMenu; // het memory adress van het currently selected menu lijst.
+int menuLength = 1;
 
 
 void nothing() {

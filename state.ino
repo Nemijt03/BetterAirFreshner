@@ -1,10 +1,3 @@
-#define NOTINUSE 0
-#define NR1 1
-#define NR2 2
-#define CLEANING 3
-#define UNDEFINED 4
-#define TRIGGERED 5
-#define MENUACTIVE 6
 byte state = NOTINUSE;
 
 // 0 == not in use
@@ -15,6 +8,10 @@ byte state = NOTINUSE;
 // 5 == triggered, spray shot imminent or waiting for spray shot
 // 6 == operator menu active -> if end then go to 0
 
+void changeState(byte toWhat) {
+    state = toWhat;
+    led.setColor(coloursPerState[state]);
+}
 
 // 0 -> 4 when lights turn on.
 // 1 or 2 or 3 when type is known

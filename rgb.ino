@@ -1,13 +1,13 @@
 #include <RGBLed.h>
 
-int purple[3] = {75,1,94};
-int turqoise[3] = {70,200,180};
-int gold[3] = {255,120,0};
-
 RGBLed led(9, 10, 6, RGBLed::COMMON_CATHODE);
 
-void flash() {
-    led.flash(purple, 1000);
-    led.flash(turqoise, 1000);
-    led.flash(gold, 1000);
-}
+int coloursPerState[7][3] = {
+    {75,1,94},              // NOTINUSE -- Purple
+    {70,200,180},           // NR1 -- Turqoise
+    {255,120,0},            // NR2 -- Gold
+    {255,0,0},              // CLEANING
+    {0,255,0},              // UNDEFINED
+    {255,255,0},            // TRIGGERED
+    {0,255,255}             // MENUACTIVE
+};

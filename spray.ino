@@ -1,4 +1,5 @@
 int oldLight = 0; //moet geen nul zijn maar de oude light
+int lightThreshold = 800;
 
 // when light on or of
 void checkEnterExit(){
@@ -6,12 +7,12 @@ void checkEnterExit(){
     Serial.println(getL);
     if(abs(getL - oldLight) > 100) {
         
-        if(getL >= 800) {
+        if(getL >= lightThreshold) { //
             changeState(UNDEFINED);
             Serial.println("enter");
             entered = millis();
         }
-        if(getL < 800) {exited = millis(); Serial.println("exit");}
+        if(getL < lightThreshold) {exited = millis(); Serial.println("exit");}
         if(getL > whenSX && getL < whenSY && getL < 800) {timedSpray();} 
     }
     oldLight = getL;

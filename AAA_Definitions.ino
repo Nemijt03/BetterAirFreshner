@@ -10,7 +10,7 @@ int whenSY = 1023;
 int timeToSpray = 15;
 int entered = 0;
 int exited = 0;
-float longEnough = 4200;
+float longEnough = 420000;
 int closeEnough = 200; //testen
 
 

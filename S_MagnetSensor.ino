@@ -4,6 +4,7 @@
 int rolls = 0;
 byte hasContact = 1;
 
+//doet het nog niet
 void updatePaper() {
     byte cont = 0;
     byte butt = getButton();
@@ -14,6 +15,7 @@ void updatePaper() {
         rolls += 1;
         hasContact = cont;
     }
+    Serial.println(rolls);
 }
 
 int toiletPaper() {

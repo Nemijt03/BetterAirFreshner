@@ -9,17 +9,17 @@ class Timer {
     unsigned long prevMillis = 0;
     
     Timer(unsigned long interval, void (*inputFunc)()) {
-      activationTime = millis(); //currentmillis
+      activationTime = millis() + interval; //millis(); //millis() + interval
       intervalTime = interval;
       func = inputFunc;
     };
     
     bool isTime() {
-      return activationTime - prevMillis >= intervalTime;
-    };
+      return activationTime <= millis();//activationTime - prevMillis >= intervalTime; //activationTime <= millis();
+    }
 
     void reset() {
-      prevMillis = activationTime;
+      activationTime = millis() + intervalTime;  //prevMillis = activationTime; //activationTime = millis();
     }
 
     void tick() {

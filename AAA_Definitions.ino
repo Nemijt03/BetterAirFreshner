@@ -5,12 +5,12 @@
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
-int whenSX = 0;
-int whenSY = 500;
+int whenSX = 500;
+int whenSY = 1023;
 int timeToSpray = 15;
 int entered = 0;
 int exited = 0;
-float longEnough = 420000;
+float longEnough = 4200;
 int closeEnough = 200; //testen
 
 

@@ -22,8 +22,6 @@ int getSensorState(int sensor) {
 // state = 3 -> in use, cleaning
 // state = 1 -> in use, number 1
 // state = 2 -> in use, number 2
-
-
 int getStateFromSensors() {
     if (sensorState > 8 || (sensorState > 4 && sensorState < 8 && getSensorState(1))) return NR2;
     if (sensorState < 4 && getSensorState(1)) return CLEANING;

@@ -25,4 +25,5 @@ void loop() {
   updateLight.tick();
   updateDist.tick();
   updateMotion.tick();
+  updateMagnet.tick();
 }

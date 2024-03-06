@@ -1,4 +1,4 @@
-int sensorPin = 10;
+int sensorPin = A1;
 byte hasMoved = 0;
 
 

@@ -1,5 +1,6 @@
 int oldLight = 0; //moet geen nul zijn maar de oude light
 int lightThreshold = 800;
+int mosfet = A2;
 
 // when light on or of
 void checkEnterExit(){
@@ -12,7 +13,7 @@ void checkEnterExit(){
             Serial.println("enter");
             entered = millis();
         }
-        if(getL < lightThreshold) {exited = millis(); Serial.println("exit");}
+        if(getL < lightThreshold) {exited = millis(); Serial.println("exit");} //resets van sensors
         if(getL > whenSX && getL < whenSY && getL < 800) {timedSpray();} 
     }
     oldLight = getL;
@@ -36,9 +37,7 @@ void howManySpray() {
   updateSensors(1, timeOnToilet());
   updateSensors(2, toiletPaper());
   
-  Serial.println(toiletPaper());
   int getS = getStateFromSensors();
-  Serial.println(getS);
 
   changeState(getS);
   if(getS != 3) {
@@ -50,6 +49,6 @@ void howManySpray() {
 
 void spray() {
   Serial.println(F("Spraying"));
-  digitalWrite(7, HIGH);
+  digitalWrite(mosfet, HIGH); // change back and keep for 15 secs
   changeState(NOTINUSE);
 }

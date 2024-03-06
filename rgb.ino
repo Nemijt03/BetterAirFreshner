@@ -1,6 +1,6 @@
 #include <RGBLed.h>
 
-RGBLed led(9, 10, 6, RGBLed::COMMON_CATHODE);
+RGBLed led(9, 10, 7, RGBLed::COMMON_CATHODE);
 
 int coloursPerState[7][3] = {
     {75,1,94},              // NOTINUSE -- Purple

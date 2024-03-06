@@ -1,6 +1,7 @@
 //onder op stokje plakken 
 // en in extented wc rol plakken
 // na 1 hele ronden heeft die contact
+int magnetPin = 3;
 int rolls = 0;
 byte hasContact = 0;
 byte cont = 0;
@@ -8,21 +9,20 @@ byte cont = 0;
 //doet het nog niet
 void updatePaper() {
    
-    byte butt = getButton();
-    Serial.println(hasContact);
-    if(butt == 4) {
+    byte butt = digitalRead(magnetPin);
+    if(butt == LOW) {
         cont = 1; 
     }
-    else if (butt == 0){
+    else if (butt == HIGH){
         hasContact = 0;
         cont = 0;
     }
-    else if(butt > 0) return;
 
     if(cont && !hasContact) {
         rolls += 1;
         hasContact = 1;
     }
+    Serial.println(rolls);
 }
 
 int toiletPaper() {

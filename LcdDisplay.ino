@@ -12,6 +12,7 @@ void display(String message) {
 void toIdle() {
     globalMenu = idleMenu;
     menuLength = 1;
+    changeState(NOTINUSE);
 
     lcd.createChar(0, degree);
     lcd.setCursor(0,0);

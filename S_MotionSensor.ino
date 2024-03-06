@@ -1,11 +1,16 @@
-int sensorPin = A1;
+int sensorPin = 2;
 byte hasMoved = 0;
 
+
+void setupMotionSensor() {
+  pinMode(sensorPin, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(sensorPin), triggerMove, RISING);
+}
 
 int getMotion() {
   return hasMoved;
 }
 
-void updateMoveIt() {
-  if(digitalRead(sensorPin)) hasMoved = 1;
+void triggerMove() {
+  hasMoved = 1;
 }

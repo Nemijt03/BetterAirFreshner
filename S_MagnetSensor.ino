@@ -6,6 +6,13 @@ int rolls = 0;
 byte hasContact = 0;
 byte cont = 0;
 
+
+void setupMotionSensor() {
+  pinMode(magnetPin, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(magnetPin), triggerMove, FALLING); // TRIGGERMOVE VERVANGEN
+}
+
+
 //doet het nog niet
 void updatePaper() {
    

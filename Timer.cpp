@@ -1,29 +1,31 @@
 #include <Arduino.h>
 
+
 class Timer {
   public:
     void (*func)();
     unsigned long activationTime;
     unsigned long intervalTime;
-
+    unsigned long prevMillis = 0;
+    
     Timer(unsigned long interval, void (*inputFunc)()) {
-      activationTime = interval + millis();
+      activationTime = millis(); //currentmillis
       intervalTime = interval;
       func = inputFunc;
     };
     
     bool isTime() {
-      return activationTime <= millis();
+      return activationTime - prevMillis >= intervalTime;
     };
 
     void reset() {
-      activationTime = millis() + intervalTime;
+      prevMillis = activationTime;
     }
 
     void tick() {
       if (isTime()) {
-        func();
         reset();
+        func();
       }
     }
 };

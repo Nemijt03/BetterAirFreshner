@@ -2,10 +2,10 @@
 
 Timer updateTemp(2000, &updateTemperature);
 Timer updateDist(10000, &updateSit);
-Timer updateMotion(1000, &updateMoveIt);
+// Timer updateMotion(1000, &triggerMove);
 Timer updateLight(1000, &checkEnterExit);
 Timer updateSpray(0, &nothing);
-Timer updateMagnet(1000, &updatePaper);
+// Timer updateMagnet(1000, &updatePaper);
 
 void setup() {
   displaySetup();
@@ -24,6 +24,6 @@ void loop() {
   updateTemp.tick();
   updateLight.tick();
   updateDist.tick();
-  updateMotion.tick();
-  updateMagnet.tick();
+  // updateMotion.tick();
+  // updateMagnet.tick();
 }

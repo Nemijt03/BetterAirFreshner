@@ -7,9 +7,9 @@ byte hasContact = 0;
 byte cont = 0;
 
 
-void setupMotionSensor() {
+void setupMagnetSensor() {
   pinMode(magnetPin, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(magnetPin), triggerMove, FALLING); // TRIGGERMOVE VERVANGEN
+  attachInterrupt(digitalPinToInterrupt(magnetPin), updatePaper, FALLING); // TRIGGERMOVE VERVANGEN
 }
 
 
@@ -17,10 +17,10 @@ void setupMotionSensor() {
 void updatePaper() {
    
     byte butt = digitalRead(magnetPin);
-    if(butt == LOW) {
+    if(butt == LOW) { // activated
         cont = 1; 
     }
-    else if (butt == HIGH){
+    else if (butt == HIGH){ // not activated
         hasContact = 0;
         cont = 0;
     }
@@ -29,6 +29,7 @@ void updatePaper() {
         rolls += 1;
         hasContact = 1;
     }
+    Serial.print(F("Rolls: "));
     Serial.println(rolls);
 }
 

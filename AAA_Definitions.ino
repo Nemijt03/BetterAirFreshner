@@ -1,10 +1,10 @@
 #include <LiquidCrystal.h>
+#include <EEPROM.h>
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
-int remainingShots = 2400; // maximum amount of shots
 int whenSX = 0;
 int whenSY = 500;
 int timeToSpray = 15;
@@ -34,6 +34,21 @@ byte degree[] = {
 #define MENUACTIVE 6
 byte state = NOTINUSE;
 
+int getRemainingShots() {
+  int res;
+  EEPROM.get(0, res);
+  return res;
+}
+
+void resetRemainingShots() {
+  EEPROM.put(0, 2400);
+}
+
+void decrementRemainingShots() {
+  int i = getRemainingShots();
+  i--;
+  EEPROM.put(0, i);
+}
 struct MenuItem
 {
   String name;

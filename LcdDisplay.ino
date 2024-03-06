@@ -18,7 +18,7 @@ void toIdle() {
     lcd.print(getTemperature());
     lcd.write(byte(0));
     lcd.print(F("C  S: "));
-    lcd.print(remainingShots);
+    lcd.print(getRemainingShots());
     lcd.setCursor(0,1);
     lcd.print(F("Press "));
     lcd.write(byte(126)); // '->'
@@ -28,6 +28,6 @@ void toIdle() {
 void updateRemainingShots() {
     if (globalMenu[0].name == "To settings") {
         lcd.setCursor(12,0);
-        lcd.print(remainingShots);
+        lcd.print(getRemainingShots());
     }
 }

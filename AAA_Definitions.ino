@@ -95,6 +95,7 @@ void displayMenu() {
 void loopMenu() {
   if(state == TRIGGERED){
     updateSpray.tick();
+    builtInSprayDelay.tick();
   }
   if (getButton() == 1) {
     selectNext();

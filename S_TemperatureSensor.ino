@@ -16,7 +16,7 @@ float getTemperature() {
 }
 
 void updateTemperature() {
-    if (globalMenu[0].name == "To settings") {
+    if (globalMenu[0].name == "To settings" && state == NOTINUSE) {
         lcd.home();
         lcd.print(getTemperature());
     }

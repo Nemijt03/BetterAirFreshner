@@ -14,3 +14,7 @@ int getMotion() {
 void triggerMove() {
   hasMoved = 1;
 }
+
+void resetMotion() {
+  hasMoved = 0;
+}

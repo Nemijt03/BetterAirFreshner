@@ -15,3 +15,7 @@ void updateSit(){
 int sit(){
   return beenSatOn;
 }
+
+void resetSit() {
+  beenSatOn = 0;
+}

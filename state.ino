@@ -7,7 +7,9 @@
 // 6 == operator menu active -> if end then go to 0
 
 void changeState(byte toWhat) {
+    Serial.println(F(""));
     state = toWhat;
+    if (toWhat == TRIGGERED) displaySpray();
     led.setColor(coloursPerState[state]);
 }
 

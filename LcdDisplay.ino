@@ -14,6 +14,7 @@ void toIdle() {
     menuLength = 1;
     changeState(NOTINUSE);
 
+    lcd.clear();
     lcd.createChar(0, degree);
     lcd.setCursor(0,0);
     lcd.print(getTemperature());
@@ -31,4 +32,12 @@ void updateRemainingShots() {
         lcd.setCursor(12,0);
         lcd.print(getRemainingShots());
     }
+}
+
+void displaySpray() {
+  lcd.clear();
+  lcd.setCursor(4,0);
+  lcd.print(F("Spray"));
+  lcd.setCursor(3,1);
+  lcd.print(F("Imminent"));
 }

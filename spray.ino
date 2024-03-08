@@ -23,8 +23,14 @@ void enterexit1() {
       lcd.display();
       entered = millis();
   }
-  if(getL < lightThreshold) {exited = millis(); Serial.println("exit"); changeState(NOTINUSE); digitalWrite(backlightPin, LOW); lcd.noDisplay();} //resets van sensors
-  if(getL > whenSX && getL < whenSY && getL < 800) {timedSpray();} 
+  if(getL < lightThreshold) {
+    exited = millis(); 
+    Serial.println("exit"); 
+    changeState(NOTINUSE); 
+    timedSpray(); 
+    digitalWrite(backlightPin, LOW); 
+    lcd.noDisplay();
+  } //resets van sensors
 }
 
 int timeOnToilet(){
@@ -87,9 +93,8 @@ void mosfetToggle() {
     writeLow();
     Serial.println(F("changestate aanroepen"));
     // all reset functionality
+    
     resetAll();
-    enterexit1();
-    toIdle();
     // changeState denk ik
     // hoeft niet meer te ticken
   }

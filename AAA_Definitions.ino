@@ -5,8 +5,6 @@
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 6, d7 = A1;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
-int whenSX = 500;
-int whenSY = 1023;
 int timeToSpray = 15;
 int entered = 0;
 int exited = 0;
@@ -66,8 +64,8 @@ struct MenuItem
 MenuItem idleMenu[1] = {MenuItem("To settings", &toSelectorMenu, true)};
 MenuItem confirmReset[2] = {MenuItem("OK", &resetShots, true), MenuItem("CANCEL", &toIdle, false)};
 MenuItem selectorMenu[3] = 
-  {MenuItem("Reset shots", &resetShotsConfirm, false), MenuItem("Timing options", &toWhenSprayMenu, false), MenuItem("Back to idle", &toIdle, true)};
-MenuItem whenSprayMenu[2] = {MenuItem("When entering", &selectSprayAtEnter, true), MenuItem("When exiting", &selectSprayAtExit, false)};
+  {MenuItem("Reset shots", &resetShotsConfirm, false), MenuItem("Timing options", &toTimingMenu, false), MenuItem("Back to idle", &toIdle, true)};
+//MenuItem whenSprayMenu[2] = {MenuItem("When entering", &selectSprayAtEnter, true), MenuItem("When exiting", &selectSprayAtExit, false)};
 MenuItem timingMenu[10] = 
 {
   MenuItem("15 seconds", &selectTiming, true),  MenuItem("18 seconds", &selectTiming, false), 
@@ -101,7 +99,7 @@ void loopMenu() {
     updateSpray.tick();
     builtInSprayDelay.tick();
   }
-  if (state != TRIGGERED) {
+  if (state != TRIGGERED && state != MENUACTIVE) {
     updateSensorState.tick();
   }
   if (getButton() == 1) {

@@ -1,21 +1,3 @@
-void toWhenSprayMenu() {
-    globalMenu = whenSprayMenu;
-    menuLength = 2;
-    menu();
-}
-
-void selectSprayAtEnter() {
-    whenSX = 500;
-    whenSY = 1023;
-    toTimingMenu();
-}
-
-void selectSprayAtExit() {
-    whenSX = 0;
-    whenSY = 500;
-    toTimingMenu();
-}
-
 void toTimingMenu() {
     globalMenu = timingMenu;
     menuLength = 10;

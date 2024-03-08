@@ -19,9 +19,11 @@ void enterexit1() {
   if(getL >= lightThreshold && state != TRIGGERED) {
       changeState(UNDEFINED); // blocks waiting for spray
       Serial.println("enter");
+      digitalWrite(backlightPin, HIGH);
+      lcd.display();
       entered = millis();
   }
-  if(getL < lightThreshold) {exited = millis(); Serial.println("exit"); changeState(NOTINUSE);} //resets van sensors
+  if(getL < lightThreshold) {exited = millis(); Serial.println("exit"); changeState(NOTINUSE); digitalWrite(backlightPin, LOW); lcd.noDisplay();} //resets van sensors
   if(getL > whenSX && getL < whenSY && getL < 800) {timedSpray();} 
 }
 

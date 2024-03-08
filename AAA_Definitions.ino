@@ -12,6 +12,7 @@ int entered = 0;
 int exited = 0;
 float longEnough = 4200;
 int closeEnough = 200; //testen
+int backlightPin = 13;
 
 
 byte degree[] = {

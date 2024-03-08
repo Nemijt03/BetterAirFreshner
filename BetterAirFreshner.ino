@@ -6,6 +6,7 @@ Timer updateDist(10000, &updateSit);
 Timer updateLight(1000, &checkEnterExit);
 Timer updateSpray(0, &nothing);
 Timer builtInSprayDelay(0, &nothing);
+Timer updateSensorState(5000, &sensorStateUpdate);
 // Timer updateMagnet(1000, &updatePaper);
 
 void setup() {
@@ -21,8 +22,6 @@ void setup() {
 
   Serial.begin(9600);
   toIdle();
-
-  // digitalWrite(A2, HIGH);
 }
 
 void loop() {
@@ -30,6 +29,4 @@ void loop() {
   updateTemp.tick();
   updateLight.tick();
   updateDist.tick();
-  // updateMotion.tick();
-  // updateMagnet.tick();
 }

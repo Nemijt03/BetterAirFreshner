@@ -93,9 +93,15 @@ void displayMenu() {
 }
 
 void loopMenu() {
+  // Serial.print(F("State: "));
+  // Serial.println(state);
+
   if(state == TRIGGERED){
     updateSpray.tick();
     builtInSprayDelay.tick();
+  }
+  if (state != TRIGGERED) {
+    updateSensorState.tick();
   }
   if (getButton() == 1) {
     selectNext();

@@ -9,55 +9,56 @@ void checkEnterExit(){
     // Serial.print(F("Light level: "));
     // Serial.println(getL);
     if(abs(getL - oldLight) > 100) {
-        
-        if(getL >= lightThreshold) { //
-            // changeState(UNDEFINED); // blocks waiting for spray
-            Serial.println("enter");
-            entered = millis();
-        }
-        if(getL < lightThreshold) {exited = millis(); Serial.println("exit");} //resets van sensors
-        if(getL > whenSX && getL < whenSY && getL < 800) {timedSpray();} 
+      enterexit1();
     }
     oldLight = getL;
 }
 
+void enterexit1() {
+  int getL = getLight();
+  if(getL >= lightThreshold && state != TRIGGERED) {
+      changeState(UNDEFINED); // blocks waiting for spray
+      Serial.println("enter");
+      entered = millis();
+  }
+  if(getL < lightThreshold) {exited = millis(); Serial.println("exit"); changeState(NOTINUSE);} //resets van sensors
+  if(getL > whenSX && getL < whenSY && getL < 800) {timedSpray();} 
+}
+
 int timeOnToilet(){
   Serial.print("time on toilet: "); 
-  Serial.println(exited - entered);
-  if((exited - entered >= longEnough) && getMotion()) {return 1;}
+  int timeTook = exited - entered;
+
+  if (timeTook < 0) timeTook = millis() - entered;
+  Serial.println(timeTook);
+
+  if((timeTook >= longEnough) && getMotion()) {return 1;}
   return 0;
 }
 
 void timedSpray() {
-  int timing = timeToSpray - 15;
-  updateSpray = Timer(timing * 1000, &howManySpray);
-  changeState(TRIGGERED);
+  if (getStateFromSensors() != 3) {
+    int timing = timeToSpray - 15;
+    updateSpray = Timer(timing * 1000, &howManySpray);
+    changeState(TRIGGERED);
+  }
+  else resetAll();
 }
 
 void howManySpray() {
-  updateSpray = Timer(10000, &nothing);
-  updateSensors(0, sit());
-  updateSensors(1, timeOnToilet());
-  updateSensors(2, toiletPaper());
-  
-  int getS = getStateFromSensors();
+  byte getS = getStateFromSensors();
+  updateSpray = Timer(100000, &nothing);
 
-  // changeState(getS);
-  if(getS != 3) {
-    spraysRemaining = getS - 1;
-    mosfetToggle();
-    // for(int i = 0; i < getS; i++) {
-      // spray();
-    // }
-  }
+  spraysRemaining = getS - 1;
+  mosfetToggle();
 }
 
 void spray() {
 
   Serial.println(F("Spraying"));
-  // decrementRemainingShots();
-  digitalWrite(mosfet, HIGH); // change back and keep for 15 secs
-  // toIdle();
+  changeState(TRIGGERED);
+  spraysRemaining = 0;
+  mosfetToggle();
 }
 
 byte mosfetState = LOW;
@@ -83,12 +84,24 @@ void mosfetToggle() {
   else {
     writeLow();
     Serial.println(F("changestate aanroepen"));
+    // all reset functionality
+    resetAll();
+    enterexit1();
     toIdle();
     // changeState denk ik
     // hoeft niet meer te ticken
   }
 
 
+}
+
+void resetAll() {
+  resetMotion();
+  resetSit();
+  resetPaper();
+  resetSensors();
+  enterexit1();
+  toIdle();
 }
 void writeLow() {
   decrementRemainingShots();

@@ -23,8 +23,29 @@ int getSensorState(int sensor) {
 // state = 1 -> in use, number 1
 // state = 2 -> in use, number 2
 int getStateFromSensors() {
+
+    Serial.print("Sensorstate: ");
+    Serial.println(sensorState);
+    Serial.print("getsensor 1: ");
+    Serial.println(getSensorState(1));
     if (sensorState > 8 || (sensorState > 4 && sensorState < 8 && getSensorState(1))) return NR2;
     if (sensorState < 4 && getSensorState(1)) return CLEANING;
     return NR1;
     // no toilet paper, no sitting, long time.
+}
+
+void sensorStateUpdate() {
+    Serial.println(F("sensorStateUpdate"));
+
+    Serial.println(sit());
+    updateSensors(0, sit());
+    Serial.println(timeOnToilet());
+    updateSensors(1, timeOnToilet());
+    Serial.println(toiletPaper());
+    updateSensors(2, toiletPaper());
+    Serial.println(F("sit, timeontoilet, toiletpaper"));
+
+    int getS = getStateFromSensors();
+    changeState(getS);
+
 }

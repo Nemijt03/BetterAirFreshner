@@ -7,13 +7,14 @@ Timer updateLight(1000, &checkEnterExit);
 Timer updateSpray(0, &nothing);
 Timer builtInSprayDelay(0, &nothing);
 Timer updateSensorState(5000, &sensorStateUpdate);
+Timer updateHeartBeat(300, &blinkStateLed);
 // Timer updateMagnet(1000, &updatePaper);
 
 void setup() {
   displaySetup();
   setupMagnetSensor();
   setupMotionSensor();
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(13, OUTPUT);
   pinMode(A3, INPUT); // Button
   pinMode(7, OUTPUT); // RGB LED
   pinMode(9, OUTPUT); // RGB LED
@@ -29,4 +30,5 @@ void loop() {
   updateTemp.tick();
   updateLight.tick();
   updateDist.tick();
+  updateHeartBeat.tick();
 }

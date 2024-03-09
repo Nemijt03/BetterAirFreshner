@@ -13,5 +13,20 @@ void changeState(byte toWhat) {
     led.setColor(coloursPerState[state]);
 }
 
-// 0 -> 4 when lights turn on.
-// 1 or 2 or 3 when type is known
+// 3  -> 2   -> 2   -> 1   -> 1  -> 0   -> 0   -> 3
+// ON -> 200 -> OFF -> 200 -> ON -> 200 -> OFF -> 1000
+byte ledState = 0;
+void blinkStateLed() {
+    if (ledState % 2 == 0) led.off();
+    else led.setColor(coloursPerState[state]);
+
+    if (ledState == 0) {
+        updateHeartBeat = Timer(1000, &blinkStateLed);
+        ledState = 3;
+        return;
+    }
+    if (ledState == 3) {
+        updateHeartBeat = Timer(200, &blinkStateLed);
+    }
+    ledState--;
+}

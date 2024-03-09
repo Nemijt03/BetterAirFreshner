@@ -6,8 +6,8 @@ int spraysRemaining = 0;
 // when light on or of
 void checkEnterExit(){
     int getL = getLight();
-    // Serial.print(F("Light level: "));
-    // Serial.println(getL);
+    Serial.print(F("Light level: "));
+    Serial.println(getL);
     if(abs(getL - oldLight) > 100) {
       enterexit1();
     }

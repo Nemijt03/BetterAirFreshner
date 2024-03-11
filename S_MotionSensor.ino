@@ -1,20 +1,24 @@
 int sensorPin = 2;
 byte hasMoved = 0;
 
-
-void setupMotionSensor() {
+void setupMotionSensor()
+{
   pinMode(sensorPin, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(sensorPin), triggerMove, RISING);
 }
 
-int getMotion() {
+int getMotion()
+{
   return hasMoved;
 }
 
-void triggerMove() {
-  hasMoved = 1;
+void triggerMove()
+{
+  if (state != NOTINUSE)
+    hasMoved = 1;
 }
 
-void resetMotion() {
+void resetMotion()
+{
   hasMoved = 0;
 }

@@ -1,4 +1,5 @@
-void resetShotsConfirm() {
+void resetShotsConfirm()
+{
     lcd.clear();
     lcd.home();
     lcd.print(F("Reset shots?"));
@@ -7,7 +8,8 @@ void resetShotsConfirm() {
     menu();
 }
 
-void resetShots() {
+void resetShots()
+{
     resetRemainingShots();
     toIdle();
 }

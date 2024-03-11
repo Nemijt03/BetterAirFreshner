@@ -2,22 +2,21 @@
 
 Timer updateTemp(2000, &updateTemperature);
 Timer updateDist(10000, &updateSit);
-// Timer updateMotion(1000, &triggerMove);
 Timer updateLight(1000, &checkEnterExit);
 Timer updateSpray(0, &nothing);
 Timer builtInSprayDelay(0, &nothing);
 Timer updateSensorState(5000, &sensorStateUpdate);
 Timer updateHeartBeat(300, &blinkStateLed);
-// Timer updateMagnet(1000, &updatePaper);
 
-void setup() {
+void setup()
+{
   displaySetup();
   setupMagnetSensor();
   setupMotionSensor();
   pinMode(13, OUTPUT);
-  pinMode(A3, INPUT); // Button
-  pinMode(7, OUTPUT); // RGB LED
-  pinMode(9, OUTPUT); // RGB LED
+  pinMode(A3, INPUT);  // Button
+  pinMode(7, OUTPUT);  // RGB LED
+  pinMode(9, OUTPUT);  // RGB LED
   pinMode(10, OUTPUT); // RGB LED
   pinMode(A2, OUTPUT); // Mosfet
 
@@ -25,7 +24,8 @@ void setup() {
   toIdle();
 }
 
-void loop() {
+void loop()
+{
   loopMenu();
   updateTemp.tick();
   updateLight.tick();
